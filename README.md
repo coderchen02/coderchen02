@@ -125,7 +125,7 @@ Current Focus
 
 ## 📫 联系我
 
-- GitHub: [coderchen02](https://github.com/coderchen02)
+- Email: [Email](hanchen200205@163.com)
 - 方向：C++ 后端开发 / Linux 系统编程 / 存储引擎 / RPC 框架
 
 ---
