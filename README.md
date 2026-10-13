@@ -1,133 +1,52 @@
 # 👋 你好，我是 Chen（晨）
 
-> C++ / Linux / Backend / Storage / RPC  
-> 关注存储引擎、高性能网络、RPC 框架与底层系统机制。
+> C++ 后端开发 · Linux 系统编程 · 计算机网络
 
----
+我是一名在读研究生，主要学习和实践 **C++ 后端与系统编程**。目前围绕 **多 Reactor 服务器** 和 **RPC 框架** 开展项目，通过代码理解网络通信、线程协作与资源管理。
 
-## 🧑‍💻 关于我
+## 🛠️ 技术栈与学习方向
 
-我是一名专注于 **C++ 后端与系统方向** 的在读研究生。  
-相比只停留在业务开发，我更喜欢理解代码背后的运行机制：内存布局、线程调度、系统调用、缓存、网络 I/O、RPC 调用链路，以及数据库存储引擎的读写路径。
+![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=flat-square&logo=cplusplus&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
 
-目前我正在深入学习和实践：
+- **C++**：面向对象、STL、RAII、智能指针、移动语义与并发编程。
+- **操作系统与 Linux**：进程与线程、虚拟内存、线程同步、进程间通信和系统调用。
+- **计算机网络**：TCP/IP、HTTP/HTTPS、Socket 编程、I/O 多路复用与 Reactor 模型。
 
-- **C++ 现代工程实践**：RAII、智能指针、移动语义、并发编程、性能分析
-- **Linux 系统编程**：进程/线程、虚拟内存、IPC、网络编程、I/O 多路复用
-- **存储与数据库内核**：LSM-Tree、WAL、MemTable、SSTable、Compaction、Block Cache
-- **高性能后端基础设施**：RPC、事件驱动、异步 I/O、缓存策略、benchmark 与 profiling
+## 🚀 项目实践
 
----
+### [多 Reactor 网络服务器](https://github.com/coderchen02/multi-reactor-server)
 
-## 🛠️ 技术栈
+基于 C++ 的多 Reactor HTTP 服务器项目，围绕连接建立、事件分发、网络读写和 HTTP 请求处理组织代码。
 
-### Systems & Backend
+- **主从 Reactor**：主 Reactor 接收新连接，将连接分配给工作线程中的子 Reactor。
+- **事件驱动设计**：通过 `EventLoop`、`Channel` 和 `Dispatcher` 组织事件循环与 I/O 多路复用。
+- **连接与协议处理**：封装 TCP 连接、读写缓冲区、HTTP 请求解析和响应生成。
 
-![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
-![C](https://img.shields.io/badge/C-555555?style=for-the-badge&logo=c&logoColor=white)
-![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-![RPC](https://img.shields.io/badge/RPC-1F2937?style=for-the-badge&logo=protocols.io&logoColor=white)
+`C++` · `Linux` · `TCP` · `Reactor` · `epoll` · `多线程` · `HTTP`
 
-### Tools
+### [C++ RPC 框架](https://github.com/coderchen02/rpc)
 
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white)
-![CMake](https://img.shields.io/badge/CMake-064F8C?style=for-the-badge&logo=cmake&logoColor=white)
+基于 C++ 的 RPC 框架项目，打通服务发现、节点选择、请求序列化、网络传输和远程方法调用的链路。
 
----
+- **通信与序列化**：使用 TCP 传输请求和响应，通过 Protobuf 编码调用信息及参数。
+- **服务注册与发现**：通过 ZooKeeper 管理服务实例，结合客户端本地缓存获取可用节点。
+- **客户端负载均衡**：从可用实例中选择目标节点，分发远程调用请求。
+- **调用可靠性**：围绕响应超时、故障节点隔离和幂等方法重试处理调用失败。
 
-## 🚀 正在构建的方向
+`C++` · `RPC` · `TCP` · `Protobuf` · `ZooKeeper` · `服务发现` · `负载均衡`
 
-### LevelDB-ScanAwareCache
+## 📚 学习记录
 
-基于 LevelDB 的读路径性能优化项目，关注范围扫描导致的 Block Cache 污染问题。
-
-计划实现：
-
-- LevelDB 读路径 metrics：SSTable 访问次数、Block Cache 命中率、Bloom Filter 过滤效果
-- Scan-aware cache admission：降低范围扫描对热点缓存的污染
-- YCSB-like benchmark：对比随机读、范围扫描、混合负载下的 P95/P99 延迟
-- 技术报告：分析 LSM-Tree 中读放大、缓存污染与 Compaction 的关系
-
-关键词：
-
-```text
-C++ / LevelDB / LSM-Tree / Block Cache / Bloom Filter / Compaction / Benchmark
-```
-
-### C++ RPC Framework
-
-基于 C++ 的轻量级 RPC 框架项目，关注服务注册、网络通信、序列化、连接管理与高并发调用链路。
-
-关注内容：
-
-- Reactor 网络模型与事件循环
-- TCP 连接管理、请求分发、超时控制
-- RPC 服务注册、方法调用、序列化/反序列化
-- 异步调用、线程池、负载均衡与压测分析
-
-关键词：
-
-```text
-C++ / RPC / Reactor / TCP / Thread Pool / Serialization / Load Balance
-```
-
----
-
-## 📚 当前学习路线
-
-```text
-C++ 基础设施
-├── Modern C++: RAII / move semantics / templates / concurrency
-├── Linux: process / thread / mmap / epoll / IPC
-├── Database: LevelDB / LSM-Tree / WAL / SSTable / Compaction
-├── Network: TCP / Reactor / RPC / serialization / load balance
-└── Performance: benchmark / perf / flamegraph / cache behavior
-```
-
----
-
-## 📊 GitHub 统计面板
-
-
-
-| 维度 | 当前重点 |
-|---|---|
-| 主语言 | C++ / C |
-| 主攻方向 | 后端基础设施、存储引擎、RPC 框架 |
-| 核心项目 | LevelDB-ScanAwareCache、C++ RPC Framework |
-| 学习关键词 | Linux、LSM-Tree、Reactor、并发编程、性能优化 |
-| 输出形式 | 源码实现、benchmark、技术报告、源码阅读笔记 |
-
-```text
-Current Focus
-├── Storage Engine     ████████░░  LevelDB / LSM-Tree
-├── RPC Framework      ███████░░░  Reactor / TCP / Thread Pool
-├── Linux System       ██████░░░░  epoll / mmap / IPC
-├── Modern C++         ███████░░░  RAII / concurrency / templates
-└── Performance        ██████░░░░  benchmark / profiling / cache
-```
-
----
-
-## 🧭 我关注的问题
-
-- 一个 key 在 LevelDB 中从 `Put` 到 `Get` 经历了什么？
-- LSM-Tree 如何在读放大、写放大和空间放大之间做权衡？
-- 一次 RPC 调用从 client stub 到 server method 经历了什么？
-- Reactor、线程池和连接管理如何影响 RPC 框架的吞吐与延迟？
-- C++ 如何写出既安全又高性能的系统级代码？
-- 一个后端系统如何通过 benchmark 和 profiling 找到真正瓶颈？
-
----
+- [C++ 基础与代码练习](https://github.com/coderchen02/Cplusplus-basis-syntax)
+- [计算机网络学习笔记](https://github.com/coderchen02/computer-network-learning)
+- [算法练习](https://github.com/coderchen02/AcWingBasicAlgorithm)
 
 ## 📫 联系我
 
-- Email: hanchen200205@163.com
-- 方向：C++ 后端开发 / Linux 系统编程 / 存储引擎 / RPC 框架
+- Email：[hanchen200205@163.com](mailto:hanchen200205@163.com)
+- 方向：C++ 后端开发 / Linux 系统编程 / 网络编程 / RPC 框架
 
 ---
 
-> 写代码时，我喜欢把问题拆到足够底层：数据在哪里，谁拥有它，什么时候释放，哪一步真正慢。
+> 我关心代码背后的机制：数据由谁管理，线程如何协作，请求如何完成一次往返。
